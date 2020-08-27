@@ -2,7 +2,7 @@ import React, { useEffect, Component } from "react";
 
 import "./App.css";
 import { connect } from "react-redux";
-import { addArticle, getArticles } from "./store/actions/articles";
+import { addArticle, getArticles, getPokemons } from "./store/actions/articles";
 import Articles from "./Articles";
 
 // function App(props) {
@@ -28,14 +28,15 @@ import Articles from "./Articles";
 
 class App extends Component {
   componentDidMount() {
-    this.props.getArticles();
+    // this.props.getArticles();
+    this.props.getPokemons();
   }
   render() {
     return (
       <div className="App">
         <h1>Dont be Sad there is tomorrow</h1>
-        {this.props.articles.map((article, i) => (
-          <li key={i}>{article}</li>
+        {this.props.articles.articles.map((article, i) => (
+          <li key={i}>{article.name.first}</li>
         ))}
         <button onClick={() => this.props.addArticle("one")}>
           Add Article
@@ -54,4 +55,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addArticle, getArticles })(App);
+export default connect(mapStateToProps, {
+  addArticle,
+  getArticles,
+  getPokemons,
+})(App);
