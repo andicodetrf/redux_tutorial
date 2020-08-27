@@ -4,10 +4,10 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { createStore } from "redux";
-import articles from "./store/reducers/articleReducer";
+import rootReducer from "./store/reducers/rootReducer";
 import { Provider } from "react-redux";
 //store
-let store = createStore(articles);
+let store = createStore(rootReducer);
 
 //subscribe to store
 // store.subscribe(() => console.log(store.getState()));
