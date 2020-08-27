@@ -1,6 +1,6 @@
 //reducers
 let initState = {
-  isLoading: false,
+  isLoading: true,
   articles: [],
 };
 const articles = (state = initState, action) => {

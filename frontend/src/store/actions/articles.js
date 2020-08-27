@@ -5,7 +5,7 @@ export const getArticles = () => {
     payload: ["one", "two", "three"],
   };
 };
-
+//sync actions only
 export const addArticle = (info) => {
   return {
     type: "ADD_ARTICLE",
@@ -14,12 +14,13 @@ export const addArticle = (info) => {
 };
 //https://pokeapi.co/api/v2/pokemon/1
 
-export const getPokemons = () => (dispatch) => {
+//async actions only
+export const getPokemons = () => async (dispatch) => {
   dispatch({
     type: "LOADING",
   });
 
-  fetch("https://randomuser.me/api/?results=5")
+  fetch("https://randomuser.me/api/?results=15")
     .then((res) => res.json())
     .then((result) => {
       console.log(result);
@@ -31,10 +32,10 @@ export const getPokemons = () => (dispatch) => {
 };
 
 // export const getPokemonNormal = function () {
-//   return function () {
-//     return {
+//   return function (dispatch) {
+//     dispatch({
 //       type: "ALL_POKEMONS",
 //       payload: ["one", "two", "three"],
-//     };
+//     });
 //   };
 // };

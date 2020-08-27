@@ -32,12 +32,15 @@ class App extends Component {
     this.props.getPokemons();
   }
   render() {
+    console.log(this.props);
     return (
       <div className="App">
         <h1>Dont be Sad there is tomorrow</h1>
-        {this.props.articles.articles.map((article, i) => (
-          <li key={i}>{article.name.first}</li>
-        ))}
+        {!this.props.isLoading
+          ? this.props.articles.map((article, i) => (
+              <li key={i}>{article.name.first}</li>
+            ))
+          : "....fetching Data from API..."}
         <button onClick={() => this.props.addArticle("one")}>
           Add Article
         </button>
@@ -48,10 +51,10 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // console.log(state);
+  console.log(state);
   return {
-    articles: state.articles,
-    authors: state.authors,
+    articles: state.articles.articles,
+    isLoading: state.articles.isLoading,
   };
 };
 
